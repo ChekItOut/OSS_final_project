@@ -36,7 +36,7 @@ const MainPage = () => {
           <input 
             ref={cityInputRef} 
             type="text" 
-            placeholder="Search City (e.g. Seoul, Japan) 영어로 올바른 스펠링 입력" 
+            placeholder="(e.g. Seoul, Japan) 영어로 올바른 스펠링 입력" 
             onKeyDown={handleKeyDown}
           />
           <button className="btn-neon" onClick={handleSearch}>Get Started</button>
