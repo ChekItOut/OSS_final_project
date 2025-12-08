@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 
-// 날씨 아이콘 헬퍼 함수
 const getWeatherIcon = (description) => {
   if (!description) return '🌍';
   const desc = description.toLowerCase();
   if (desc.includes('clear') || desc.includes('sun')) return '☀️';
-  if (desc.includes('cloud')) return '☁️';
+  if (desc.includes('cloud')) return '☁️'; //이미지 사용하려했는데, 어려워서 이모티콘으로 대체함
   if (desc.includes('rain')) return '🌧️';
   if (desc.includes('snow')) return '❄️';
   if (desc.includes('thunder')) return '⚡';
@@ -18,7 +17,6 @@ const HistoryPage = () => {
   const navigate = useNavigate();
   const [historyList, setHistoryList] = useState([]);
 
-  // 페이지 로드 시 기록 조회
   useEffect(() => {
     fetch('https://weatherserverpublish-production-6ce6.up.railway.app/weather/history')
       .then(res => res.json())
@@ -26,7 +24,6 @@ const HistoryPage = () => {
       .catch(err => console.error(err));
   }, []);
 
-  // [기능 추가] 전체 삭제 핸들러
   const handleDeleteAll = () => {
     if (window.confirm("정말로 모든 검색 기록을 삭제하시겠습니까?")) {
       fetch('https://weatherserverpublish-production-6ce6.up.railway.app/weather/deleteAll', {
@@ -34,7 +31,7 @@ const HistoryPage = () => {
       })
       .then(res => {
         if (res.ok) {
-          setHistoryList([]); // 성공 시 화면 목록 비우기
+          setHistoryList([]); // 성공 시 화면 목록 비우기!
           alert("모든 기록이 삭제되었습니다.");
         } else {
           alert("삭제에 실패했습니다.");
@@ -52,7 +49,7 @@ const HistoryPage = () => {
       </header>
 
       <div className="hero-section" style={{justifyContent: 'flex-start', paddingTop: '50px'}}>
-        {/* 상단 제목 및 삭제 버튼 영역 */}
+        {}
         <div style={{
           width: '100%', 
           maxWidth: '600px', 
@@ -63,12 +60,12 @@ const HistoryPage = () => {
         }}>
           <h2 className="title-serif" style={{fontSize: '2.5rem', margin: 0}}>Search Logs</h2>
           
-          {/* 기록이 1개 이상일 때만 삭제 버튼 표시 */}
+          {}
           {historyList.length > 0 && (
             <button 
               onClick={handleDeleteAll}
               style={{
-                background: 'rgba(255, 50, 50, 0.2)', // 붉은색 반투명 버튼
+                background: 'rgba(255, 50, 50, 0.2)', 
                 border: '1px solid rgba(255, 50, 50, 0.5)',
                 color: '#ff6b6b',
                 padding: '8px 16px',
@@ -89,7 +86,7 @@ const HistoryPage = () => {
           )}
         </div>
         
-        {/* 리스트 출력 영역 */}
+        {}
         <div className="history-list">
           {historyList.length === 0 ? <p style={{color:'#ccc'}}>조회된 기록이 없습니다.</p> : null}
           {historyList.map((item, index) => (
